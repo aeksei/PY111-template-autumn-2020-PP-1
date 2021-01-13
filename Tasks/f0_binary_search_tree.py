@@ -6,6 +6,8 @@ or with dicts (smth like {'key': 0, value: 123, 'left': {...}, 'right':{...}})
 from typing import Any, Optional, Tuple
 # import networkx as nx
 
+bts = {}  # дерево бинарного поиска (корневой узел)
+
 
 def insert(key: int, value: Any) -> None:
     """
@@ -15,8 +17,18 @@ def insert(key: int, value: Any) -> None:
     :param value: value associated with key
     :return: None
     """
-    print(key, value)
-    return None
+
+    def _insert(subtree: dict):
+        if not subtree:
+            subtree['key'] = key
+            subtree['value'] = value
+            subtree['left'] = {}
+            subtree['right'] = {}
+        else:
+            dst_subtree = subtree['right'] if key >= subtree['key'] else subtree['left']
+            _insert(dst_subtree)
+
+    _insert(bts)
 
 
 def remove(key: int) -> Optional[Tuple[int, Any]]:
@@ -47,4 +59,5 @@ def clear() -> None:
 
     :return: None
     """
+    bts.clear()
     return None
