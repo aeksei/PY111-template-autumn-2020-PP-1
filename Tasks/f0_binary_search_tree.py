@@ -1,7 +1,24 @@
 """
 You can do it either with networkx ('cause tree is a graph)
 or with dicts (smth like {'key': 0, value: 123, 'left': {...}, 'right':{...}})
+bts = {
+    'key': 2,
+    'value': 123,
+    'left': {
+        'key': 1,
+        'value': [1, 4],
+        'left': {...},
+        'right': {...}
+    },
+    'right': {
+        'key': 3,
+        'value': 'fdsfds',
+        'left': {...},
+        'right': {...}
+    }
+}
 """
+
 
 from typing import Any, Optional, Tuple
 # import networkx as nx
