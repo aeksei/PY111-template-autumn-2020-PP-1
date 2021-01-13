@@ -17,7 +17,6 @@ def insert(key: int, value: Any) -> None:
     :param value: value associated with key
     :return: None
     """
-
     def _insert(subtree: dict):
         if not subtree:
             subtree['key'] = key
@@ -49,8 +48,17 @@ def find(key: int) -> Optional[Any]:
     :param key: key for search in the BST
     :return: value associated with the corresponding key
     """
-    print(key)
-    return None
+    def _find(subtree: dict) -> Optional[Any]:
+        if not subtree:
+            raise KeyError('Элемент не найден')
+
+        if key == subtree['key']:
+            return subtree['value']
+        else:
+            dst_subtree = subtree['right'] if key >= subtree['key'] else subtree['left']
+            return _find(dst_subtree)
+
+    return _find(bts)
 
 
 def clear() -> None:
